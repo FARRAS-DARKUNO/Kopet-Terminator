@@ -24,8 +24,7 @@ public class Player : MonoBehaviour
        if(Input.GetButtonDown("Jump") && Mathf.Abs(rg.velocity.y) < 0.001f)
        {
            rg.AddForce(new Vector2(0,jump),ForceMode2D.Impulse);
-           //triger.obj1.SetActive(false);
-           
+    
        }
     }
 }
