@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float speed ;
+    
     public float jump ;
     private Rigidbody2D rg ;
+    private float speed ;
     void Start()
     {
         speed = 10;
+        
         jump = 5;
 
         rg = GetComponent<Rigidbody2D>();
@@ -18,8 +20,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       var move = Input.GetAxis("Horizontal");
-       transform.position += new Vector3(move,0,0) * Time.deltaTime * speed ;
+        var move = Input.GetAxis("Horizontal");
+        transform.position += new Vector3(move,0,0) * Time.deltaTime * speed ;
 
        if(Input.GetButtonDown("Jump") && Mathf.Abs(rg.velocity.y) < 0.001f)
        {
