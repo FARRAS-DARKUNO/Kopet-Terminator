@@ -6,6 +6,7 @@ TagManager:
   tags:
   - gun
   - enemy
+  - suara
   layers:
   - Default
   - TransparentFX

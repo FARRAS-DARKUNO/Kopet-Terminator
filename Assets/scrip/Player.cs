@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     public float peluru_speed;
     public Transform point_peluru;
     public GameObject enemy;
+    public GameObject suara;
+    public float suara_speed;
+    public Transform point_suara;
   
     void Start()
     {
@@ -59,10 +62,19 @@ public class Player : MonoBehaviour
        if(Input.GetKeyDown(KeyCode.L) && isGun){
            Shoot_Gun();
        }
+       if(Input.GetKeyDown(KeyCode.L) && isToa){
+           Shoot_Toa();
+       }
     }
     void Shoot_Gun(){
         GameObject pelurus = Instantiate(peluru,point_peluru.position,point_peluru.rotation);
         pelurus.GetComponent<Rigidbody2D>().AddForce(peluru.transform.right * -peluru_speed);
+        Destroy(pelurus,1);
+
+    }
+    void Shoot_Toa(){
+        GameObject pelurus = Instantiate(suara,point_suara.position,point_suara.rotation);
+        pelurus.GetComponent<Rigidbody2D>().AddForce(suara.transform.right * suara_speed);
         Destroy(pelurus,1);
 
     }
