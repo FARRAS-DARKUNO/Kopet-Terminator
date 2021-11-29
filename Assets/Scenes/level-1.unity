@@ -4034,7 +4034,7 @@ GameObject:
   - component: {fileID: 803038472}
   m_Layer: 0
   m_Name: zombiestand (1)
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4456,7 +4456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827340709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.036271513, y: -0.14949973, z: 0}
+  m_LocalPosition: {x: -0.036271513, y: -0.14949973, z: -2}
   m_LocalScale: {x: 1.0690784, y: 1.0055313, z: 1.200192}
   m_Children: []
   m_Father: {fileID: 1569004152}
@@ -6501,7 +6501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444310597}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.036271513, y: 0.04484935, z: 0}
+  m_LocalPosition: {x: -0.036271513, y: 0.04484935, z: -2}
   m_LocalScale: {x: 0.98057795, y: 0.83016884, z: 1.200192}
   m_Children: []
   m_Father: {fileID: 1933048465}
@@ -9443,7 +9443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016878321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16321835, y: 0, z: 0}
+  m_LocalPosition: {x: -0.16321835, y: 0, z: -2}
   m_LocalScale: {x: 1.255147, y: 1.0346837, z: 1.200192}
   m_Children: []
   m_Father: {fileID: 1829492861}
