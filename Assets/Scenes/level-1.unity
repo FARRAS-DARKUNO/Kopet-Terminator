@@ -2174,7 +2174,7 @@ MonoBehaviour:
   - {fileID: 1711551467}
   madical: 0
   madic: {fileID: 56254373}
-  hati: {fileID: 0}
+  hati: {fileID: 1084584512}
 --- !u!70 &351995568
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

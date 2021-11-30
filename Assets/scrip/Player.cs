@@ -5,30 +5,37 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
-    public float jump ;
+   
     private Rigidbody2D rg ;
-    private float speed ;
-    public GameObject[] item ;
-    private bool isGun;
-    private bool isToa;
-    public GameObject peluru;
-    public float peluru_speed;
     public Transform point_peluru;
+    public Transform point_suara;
+    ////////////////////////////////////////////////
+    public GameObject[] item ;
+    public GameObject peluru;
     public GameObject enemy;
     public GameObject suara;
-    public float suara_speed;
-    public Transform point_suara;
-    public bool ismadical;
-
-    /////////////////////////////////////////////////////////
     public GameObject[] life ;
+    public GameObject hati ;
+    public GameObject energi_drink;
+    public GameObject madic;
+    public GameObject[] energi ;
+    ////////////////////////////////////////////////
+    private bool isGun;
+    private bool isToa;
+    private float jump ;
+    private float speed ;
+    private float peluru_speed;
+    private float suara_speed;
+    private bool ismadical;
     private int minusHealth;
     private bool attackZombies;
     private bool isanmadical;
-    public bool madical ;
-    public GameObject madic;
+    private bool madical ;
     private bool tambahnyawasatu;
-    public GameObject hati ;
+    private int energi_bar;
+    private int energi_conts;
+    private bool isenergi ;
+    private bool getegergi;
     
   
     void Start()
@@ -37,6 +44,7 @@ public class Player : MonoBehaviour
         speed = 10;
         
         jump = 5;
+        peluru_speed = 1200;
 
         rg = GetComponent<Rigidbody2D>();
 
@@ -55,11 +63,20 @@ public class Player : MonoBehaviour
         ismadical =false;
         madical = false;
 
+        for (int i = 0; i <5; i++){
+            energi[i].SetActive(false);
+        }
+        energi_bar = 5;
+        energi_conts = 0 ;
+
 
         isGun = true;
         isToa = false;
         isanmadical = false ;
         madic.SetActive(true);
+        hati.SetActive(true);
+        energi_drink.SetActive(true);
+        getegergi=false;
     }
 
     // Update is called once per frame
@@ -85,9 +102,14 @@ public class Player : MonoBehaviour
        if (Input.GetKeyDown(KeyCode.E) && tambahnyawasatu){
            if (minusHealth < 7){
                life[minusHealth].SetActive(true);
-               minusHealth ++;
+               minusHealth +=1;
                hati.SetActive(false);
+               tambahnyawasatu = false ;
            }
+       }
+       if (Input.GetKeyDown(KeyCode.E) && isenergi){
+           item[2].SetActive(true);
+           getegergi = true ;
        }
        if(Input.GetKeyDown(KeyCode.Alpha1)){
            item[0].SetActive(true);
@@ -100,6 +122,12 @@ public class Player : MonoBehaviour
            item[1].SetActive(true);
            isGun = false;
            isToa = true;
+       }
+       if (Input.GetKeyDown(KeyCode.Alpha3)){
+           for (int i = 0; i <5; i++){
+                energi[i].SetActive(true);
+            }
+            getegergi = true ;
        }
        if(Input.GetKeyDown(KeyCode.Alpha4)){
            item[3].SetActive(false);
@@ -139,10 +167,14 @@ public class Player : MonoBehaviour
         if (Playertag.gameObject.tag == "hati"){
             tambahnyawasatu = true ;
         }
+        if (Playertag.gameObject.tag =="dkink"){
+            isenergi = true ;
+        }
     }
     private void OnTriggerExit2D(Collider2D other) {
         isanmadical = false ;
         ismadical = false;
         tambahnyawasatu =false;
+        isenergi = false ;
     }
 }
