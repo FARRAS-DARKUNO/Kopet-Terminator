@@ -31,12 +31,13 @@ public class Player : MonoBehaviour
     private bool attackZombies;
     private bool isanmadical;
     private bool madical ;
+    private bool medicah_check;
     private bool tambahnyawasatu;
     private int energi_bar;
     private int energi_conts;
     private bool isenergi ;
     private bool getegergi;
-    
+    private bool energi_check;
   
     void Start()
     {
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         
         jump = 5;
         peluru_speed = 1200;
+        suara_speed  = 1200;
 
         rg = GetComponent<Rigidbody2D>();
 
@@ -74,9 +76,11 @@ public class Player : MonoBehaviour
         isToa = false;
         isanmadical = false ;
         madic.SetActive(true);
+        medicah_check = false ;
         hati.SetActive(true);
         energi_drink.SetActive(true);
         getegergi=false;
+        energi_check = false ;
     }
 
     // Update is called once per frame
@@ -98,6 +102,7 @@ public class Player : MonoBehaviour
        if (Input.GetKeyDown(KeyCode.E) && ismadical){
            item[3].SetActive(true);
            madic.SetActive(false);
+           medicah_check = true ;
        }
        if (Input.GetKeyDown(KeyCode.E) && tambahnyawasatu){
            if (minusHealth < 7){
@@ -110,6 +115,7 @@ public class Player : MonoBehaviour
        if (Input.GetKeyDown(KeyCode.E) && isenergi){
            item[2].SetActive(true);
            getegergi = true ;
+           energi_drink.SetActive(false);
        }
        if(Input.GetKeyDown(KeyCode.Alpha1)){
            item[0].SetActive(true);
@@ -123,20 +129,51 @@ public class Player : MonoBehaviour
            isGun = false;
            isToa = true;
        }
-       if (Input.GetKeyDown(KeyCode.Alpha3)){
+       if (Input.GetKeyDown(KeyCode.Alpha3) && getegergi){
            for (int i = 0; i <5; i++){
                 energi[i].SetActive(true);
             }
-            getegergi = true ;
+            getegergi = false ;
+            speed = 15;
+            peluru_speed = 1500;
+            energi_conts = 25;
+            energi_check = true ;
+            item[2].SetActive(false);
        }
-       if(Input.GetKeyDown(KeyCode.Alpha4)){
+       if (energi_check){
+           if(Input.GetKeyDown(KeyCode.L)){
+               energi_conts -= 1 ;
+               
+           }
+           if(energi_conts == 20){
+               energi[4].SetActive(false);
+           }
+           if(energi_conts == 15){
+               energi[3].SetActive(false);
+           }
+           if(energi_conts == 10){
+               energi[2].SetActive(false);
+           }
+           if(energi_conts == 5){
+               energi[1].SetActive(false);
+           }
+           if(energi_conts == 0){
+               energi[0].SetActive(false);
+               speed = 10;
+               peluru_speed = 1200;
+               energi_check = false ;
+           }
+       }
+       if(Input.GetKeyDown(KeyCode.Alpha4) && medicah_check){
            item[3].SetActive(false);
         for (int i =0 ; i<7 ; i++)
         {
             life[i].SetActive(true);
         }
         minusHealth = 7;
+        medicah_check = false ;
        }
+
        if(Input.GetKeyDown(KeyCode.L) && isGun){
            Shoot_Gun();
        }
