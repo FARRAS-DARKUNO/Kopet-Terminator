@@ -94,10 +94,10 @@ public class Player : MonoBehaviour
            rg.AddForce(new Vector2(0,jump),ForceMode2D.Impulse);
     
        }
-       if (attackZombies){
-            attackZombies = false ;
-            life[minusHealth].SetActive(false);
-        }
+       //if (attackZombies){
+            //attackZombies = false ;
+           // life[minusHealth].SetActive(false);
+        //}
 
        if (Input.GetKeyDown(KeyCode.E) && ismadical){
            item[3].SetActive(true);
@@ -198,8 +198,13 @@ public class Player : MonoBehaviour
             ismadical = true;
         }
         if (Playertag.gameObject.tag == "enemy"){
-            minusHealth -= 1;
+            
             attackZombies = true ;
+            if (attackZombies){
+                minusHealth -= 1;
+                life[minusHealth].SetActive(false);
+            }
+           
         }
         if (Playertag.gameObject.tag == "hati"){
             tambahnyawasatu = true ;
@@ -213,5 +218,6 @@ public class Player : MonoBehaviour
         ismadical = false;
         tambahnyawasatu =false;
         isenergi = false ;
+        attackZombies = false ;
     }
 }
