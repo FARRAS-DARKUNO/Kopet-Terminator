@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RESUME : MonoBehaviour
+
+public class bozz_banteng : MonoBehaviour
 {
-    public GameObject menu ;
+    // Start is called before the first frame update
     void Start()
     {
-        menu.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-    private void OnMouseDown() {
-        menu.SetActive(false);
-        Time.timeScale = 1 ;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -9,13 +10,15 @@ public class Player : MonoBehaviour
     private Rigidbody2D rg ;
     public Transform point_peluru;
     public Transform point_suara;
+    [SerializeField] private Transform player_game ;
+    [SerializeField] private Transform respawnpoint ;
     ////////////////////////////////////////////////
     public GameObject[] item ;
     public GameObject peluru;
     public GameObject enemy;
     public GameObject suara;
     public GameObject[] life ;
-    public GameObject hati ;
+    public GameObject[] hati ;
     public GameObject energi_drink;
     public GameObject madic;
     public GameObject[] energi ;
@@ -38,6 +41,7 @@ public class Player : MonoBehaviour
     private bool isenergi ;
     private bool getegergi;
     private bool energi_check;
+    private int hitung_nyawa;
   
     void Start()
     {
@@ -77,10 +81,10 @@ public class Player : MonoBehaviour
         isanmadical = false ;
         madic.SetActive(true);
         medicah_check = false ;
-        hati.SetActive(true);
         energi_drink.SetActive(true);
         getegergi=false;
         energi_check = false ;
+        hitung_nyawa = 0;
     }
 
     // Update is called once per frame
@@ -104,13 +108,16 @@ public class Player : MonoBehaviour
            madic.SetActive(false);
            medicah_check = true ;
        }
-       if (Input.GetKeyDown(KeyCode.E) && tambahnyawasatu){
+       if (tambahnyawasatu){
            if (minusHealth < 7){
                life[minusHealth].SetActive(true);
                minusHealth +=1;
-               hati.SetActive(false);
+               
                tambahnyawasatu = false ;
+               
            }
+           hati[hitung_nyawa].SetActive(false);
+           hitung_nyawa +=1;
        }
        if (Input.GetKeyDown(KeyCode.E) && isenergi){
            item[2].SetActive(true);
@@ -201,8 +208,13 @@ public class Player : MonoBehaviour
             
             attackZombies = true ;
             if (attackZombies){
+                if (minusHealth<=0){
+                    SceneManager.LoadScene(7);
+                }
                 minusHealth -= 1;
-                life[minusHealth].SetActive(false);
+                if(minusHealth>=0){
+                    life[minusHealth].SetActive(false);
+                }
             }
            
         }
@@ -212,6 +224,10 @@ public class Player : MonoBehaviour
         if (Playertag.gameObject.tag =="dkink"){
             isenergi = true ;
         }
+        if (Playertag.gameObject.tag =="Place"){
+            player_game.transform.position = respawnpoint.transform.position ;
+        }
+
     }
     private void OnTriggerExit2D(Collider2D other) {
         isanmadical = false ;

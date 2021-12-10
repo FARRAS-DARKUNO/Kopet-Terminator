@@ -14,9 +14,8 @@ public class Zombie : MonoBehaviour
      public int cont;
     void Start()
     {
-        speed = 2;
+        speed = 0;
         movei = 1;
-        isPlayer = false ;
         cont = 0;
     }
 
@@ -25,23 +24,22 @@ public class Zombie : MonoBehaviour
     {
         transform.position += new Vector3(movei,0,0) * Time.deltaTime * -speed ;
 
-        if (isPlayer) speed = 0;
-        else speed = 2 ;
-        if (cont == 10){
-            Destroy(gameObject);
+       
+        if (cont >= 40){
+            gameObject.SetActive(false);
         }
         
     }
     private void OnTriggerEnter2D(Collider2D zombies) {
         if (zombies.gameObject.tag == "Player"){
-            isPlayer = true;
+            speed = 2 ;
         }
         if (zombies.gameObject.tag == "gun"){
             cont ++;
         }
     }
     private void OnTriggerExit2D(Collider2D zombies) {
-        isPlayer = false ;
+        
     }
     
 }

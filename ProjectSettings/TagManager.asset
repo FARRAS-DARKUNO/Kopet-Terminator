@@ -10,6 +10,7 @@ TagManager:
   - madical
   - dkink
   - hati
+  - Place
   layers:
   - Default
   - TransparentFX
