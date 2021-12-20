@@ -5,6 +5,7 @@ using UnityEngine;
 public class People : MonoBehaviour
 {
     public int cont;
+    public GameObject parant;
     void Start()
     {
         cont = 0;
@@ -14,7 +15,7 @@ public class People : MonoBehaviour
     void Update()
     {
         if (cont == 10){
-            Destroy(gameObject);
+            Destroy(parant);
         }
     }
     private void OnTriggerEnter2D(Collider2D persons) {
