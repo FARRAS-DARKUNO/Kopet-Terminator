@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    
-   
+
+    public AudioSource walk ;
+    public AudioSource toar ;
+    public AudioSource hit ;
+    public AudioSource jumper ;
+    public AudioSource shooter ;
+    public AudioSource pic_item ;
+    //////////////////////////////
     private Rigidbody2D rg ;
     public Transform point_peluru;
     public Transform point_suara;
@@ -48,10 +54,11 @@ public class Player : MonoBehaviour
         
         speed = 10;
         
+        
         jump = 5;
         peluru_speed = 1200;
         suara_speed  = 1200;
-
+        
         rg = GetComponent<Rigidbody2D>();
 
         for (int i = 0 ; i < 4; i++){
@@ -91,10 +98,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         var move = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A)){
+            walk.Play();
+        }
         transform.position += new Vector3(move,0,0) * Time.deltaTime * speed ;
 
        if(Input.GetButtonDown("Jump") && Mathf.Abs(rg.velocity.y) < 0.001f)
        {
+           jumper.Play();
            rg.AddForce(new Vector2(0,jump),ForceMode2D.Impulse);
     
        }
@@ -104,12 +115,14 @@ public class Player : MonoBehaviour
         //}
 
        if (Input.GetKeyDown(KeyCode.E) && ismadical){
+           pic_item.Play();
            item[3].SetActive(true);
            madic.SetActive(false);
            medicah_check = true ;
        }
        if (tambahnyawasatu){
            if (minusHealth < 7){
+               pic_item.Play();
                life[minusHealth].SetActive(true);
                minusHealth +=1;
                
@@ -120,6 +133,7 @@ public class Player : MonoBehaviour
            hitung_nyawa +=1;
        }
        if (Input.GetKeyDown(KeyCode.E) && isenergi){
+           pic_item.Play();
            item[2].SetActive(true);
            getegergi = true ;
            energi_drink.SetActive(false);
@@ -182,9 +196,11 @@ public class Player : MonoBehaviour
        }
 
        if(Input.GetKeyDown(KeyCode.L) && isGun){
+           shooter.Play();
            Shoot_Gun();
        }
        if(Input.GetKeyDown(KeyCode.L) && isToa){
+           toar.Play();
            Shoot_Toa();
        }
     }
@@ -208,12 +224,14 @@ public class Player : MonoBehaviour
             
             attackZombies = true ;
             if (attackZombies){
+               
                 if (minusHealth<=0){
                     SceneManager.LoadScene(7);
                 }
                 minusHealth -= 1;
                 if(minusHealth>=0){
                     life[minusHealth].SetActive(false);
+                    hit.Play();
                 }
             }
            
