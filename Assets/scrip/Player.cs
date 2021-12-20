@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public AudioSource jumper ;
     public AudioSource shooter ;
     public AudioSource pic_item ;
+    public AudioSource bosss ;
     //////////////////////////////
     private Rigidbody2D rg ;
     public Transform point_peluru;
@@ -243,6 +244,7 @@ public class Player : MonoBehaviour
             isenergi = true ;
         }
         if (Playertag.gameObject.tag =="Place"){
+            bosss.Play();
             player_game.transform.position = respawnpoint.transform.position ;
         }
 
